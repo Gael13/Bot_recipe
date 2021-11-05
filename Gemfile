@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'zeitwerk', '2.5.1'
 
+gem 'webpacker', '~> 4.3.x'
+
 gem 'factory_bot_rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
