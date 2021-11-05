@@ -1,5 +1,4 @@
 class RecipeQuery
-
   # filter recipe authors
   WHITELISTED_AUTHORS = [
     'romina_15823121',
@@ -13,8 +12,8 @@ class RecipeQuery
 
     raw_recipes = File.read(RECIPE_PATH)
 
-    JSON.parse(raw_recipes).select { |recipe| WHITELISTED_AUTHORS.include?(recipe['author']) }
-    #JSON.parse(raw_recipes)
+    #JSON.parse(raw_recipes).select { |recipe| WHITELISTED_AUTHORS.include?(recipe['author']) }
+    JSON.parse(raw_recipes)
   end
 
   def recipes_json_file_exists?
