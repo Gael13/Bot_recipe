@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   	member do
   	  post 'add_ingredient', to: 'fridges#add_ingredient'
       delete 'remove_ingredient', to: 'fridges#remove_ingredient'
+      get 'recipes', to: 'fridges#recipes'
     end
   end
 

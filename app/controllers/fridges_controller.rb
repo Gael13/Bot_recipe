@@ -1,5 +1,5 @@
 class FridgesController < ApplicationController
-  before_action :set_fridge, only: %i[ show edit update destroy add_ingredient remove_ingredient ]
+  before_action :set_fridge, only: %i[ show edit update destroy add_ingredient remove_ingredient recipes]
   before_action :set_ingredients_fridge, only: %i[ show recipes ]
 
   # GET /fridges or /fridges.json
@@ -82,6 +82,21 @@ class FridgesController < ApplicationController
     respond_to do |format|
       format.js
       format.html { redirect_to @fridge }
+    end
+  end
+
+  def recipes
+    @recipe_generator = RecipeGenerator.new(@ingredients_fridge)
+    @recipe_generator.perform
+
+    @recipes = @recipe_generator.match_recipes
+    @errors = @recipe_generator.errors
+
+    respond_to do |format|
+      format.json { render json: @errors.blank? ? @recipes : @errors, 
+                           status: @errors.blank? ? 200 : 400 
+                  }
+      format.html 
     end
   end
 

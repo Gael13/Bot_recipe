@@ -1,0 +1,41 @@
+<div class="my_recipes">
+  <h2>My recipes</h2>
+ 
+  <%= link_to 'Back to fridge', @fridge %>
+
+  <table>
+    <thead>
+      <tr>
+      	<th>Name</th>
+        <th>Author</th>
+        <th>Difficulty</th>
+        <th>Budget</th>
+        <th>Prep time</th>
+        <th>Total time</th>
+        <th>People quantity</th>
+        <th>Ingredients</th>
+        <th>Cook time</th>
+        <th>Missing Ingredient</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td><%= recipe['name'] %></td>
+          <td><%= recipe['author'] %></td>
+          <td><%= recipe['difficulty'] %></td>
+          <td><%= recipe['budget'] %></td>
+          <td><%= recipe['prep_time'] %></td>
+          <td><%= recipe['total_time'] %></td>
+          <td><%= recipe['people_quantity'] %></td>
+          <td><%= recipe['ingredients'].join(', ') %></td>
+          <td><%= recipe['cook_time'] %></td>
+          <td><%= recipe['ingredient_missing'] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
