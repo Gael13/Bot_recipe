@@ -1,9 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @fridge.title %>
-</p>
+<div id="my_fridge">
+  <h2>My fridge <%= @fridge.title %></h2>
 
-<%= link_to 'Edit', edit_fridge_path(@fridge) %> |
-<%= link_to 'Back', fridges_path %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ingredients_fridge.each do |ingredient_fridge| %>
+        <tr>
+          <td><%= ingredient_fridge.ingredient.title %></td>
+          <td><%= ingredient_fridge.ingredient.description %></td>
+          <td><%= button_to 'Remove ingredient to fridge', remove_ingredient_fridge_path(ingredient_fridge_id: ingredient_fridge.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_fridge_path(@fridge) %> |
+  <%= link_to 'Back', fridges_path %>
+</div>
+
+<div id="ingredients_list">
+  <h4>Supermarket</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th class="middle">Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.title %></td>
+          <td class="middle"><%= ingredient.description %></td>
+          <td><%= button_to 'Add to fridge', add_ingredient_fridge_path(id: @fridge.id, ingredient_id: ingredient.id ), method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

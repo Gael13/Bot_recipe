@@ -1,5 +1,6 @@
 class FridgesController < ApplicationController
-  before_action :set_fridge, only: %i[ show edit update destroy ]
+  before_action :set_fridge, only: %i[ show edit update destroy add_ingredient remove_ingredient ]
+  before_action :set_ingredients_fridge, only: %i[ show recipes ]
 
   # GET /fridges or /fridges.json
   def index
@@ -8,6 +9,7 @@ class FridgesController < ApplicationController
 
   # GET /fridges/1 or /fridges/1.json
   def show
+    @ingredients = Ingredient.all
   end
 
   # GET /fridges/new
@@ -56,10 +58,41 @@ class FridgesController < ApplicationController
     end
   end
 
+  def add_ingredient
+   @ingredient_fridge = IngredientFridge.find_or_create_by(
+                          fridge_id: params[:id], 
+                          ingredient_id: params[:ingredient_id]
+                        )
+
+    respond_to do |format|
+      if @ingredient_fridge.save
+        format.html { redirect_to @fridge, notice: 'Ingredient was successfully added to the fridge' }
+        format.json { render :show, status: :created, location: @fridge }
+      else
+        format.html { render :new }
+        format.json { render json: @ingredient_fridge.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_ingredient
+    @ingredient_fridge = IngredientFridge.find(params[:ingredient_fridge_id])
+    @ingredient_fridge.destroy
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @fridge }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fridge
       @fridge = Fridge.find(params[:id])
+    end
+
+    def set_ingredients_fridge
+      @ingredients_fridge = IngredientFridge.where(fridge_id: @fridge.id)
     end
 
     # Only allow a list of trusted parameters through.

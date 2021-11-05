@@ -3,12 +3,12 @@ FROM ruby:2.6.3
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client npm
 RUN npm i -g yarn && yarn
 
-RUN mkdir /cook_bot
-WORKDIR /cook_bot
-COPY Gemfile /cook_bot/Gemfile
-COPY Gemfile.lock /cook_bot/Gemfile.lock
+RUN mkdir /bot_recipe
+WORKDIR /bot_recipe
+COPY Gemfile /bot_recipe/Gemfile
+COPY Gemfile.lock /bot_recipe/Gemfile.lock
 RUN bundle install
-COPY . /cook_bot
+COPY . /bot_recipe
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
