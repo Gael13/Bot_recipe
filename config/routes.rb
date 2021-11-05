@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   	  post 'add_ingredient', to: 'fridges#add_ingredient'
       delete 'remove_ingredient', to: 'fridges#remove_ingredient'
       get 'recipes', to: 'fridges#recipes'
+      #post 'launch_recipe', to: 'fridges#recipes'
     end
   end
 

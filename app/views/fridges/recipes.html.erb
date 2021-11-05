@@ -33,6 +33,7 @@
           <td><%= recipe['ingredients'].join(', ') %></td>
           <td><%= recipe['cook_time'] %></td>
           <td><%= recipe['ingredient_missing'] %></td>
+          <td><%#= button_to 'Launch recipe', launch_recipe_fridge_path(recipe: recipe, id: @fridge.id), method: :post, remote: :true %></td>
         </tr>
       <% end %>
     </tbody>

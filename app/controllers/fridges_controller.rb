@@ -99,6 +99,11 @@ class FridgesController < ApplicationController
       format.html 
     end
   end
+  
+  # TODO add a launch recipe action for recipe saving, remove ingredients from fridge...
+  #def launch_recipe
+    #@recipe = OpenStruct.new(data: params[:recipe])
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
