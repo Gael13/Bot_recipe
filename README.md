@@ -20,7 +20,7 @@ docker-compose run web bundle exec rails test
 
 # Improvements
 
-The views are quite simple for the moment, a cleaner user experience muist be implemented
+The views are quite simple for the moment, a cleaner user experience must be implemented
 
 Add pagination to recipes
 
