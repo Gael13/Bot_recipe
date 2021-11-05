@@ -1,11 +1,11 @@
-Project
+#Project
 
 A prototype for suggesting recipes according to what we have in the fridge.
 A user can buy ingredients from the supermarket (add ingredients) and remove ingredients from the fridge.
 A user can ask for recipes suggestions, in case no recipe matchs we also suggest recipes with one ingredient missing.
 
 
-Init project
+#Init project
 docker-compose up
 
 docker-compose run web rails db:create
@@ -14,11 +14,11 @@ docker-compose run web rails db:migrate
 
 docker-compose run web rails db:seed
 
-Launch tests
+#Launch tests
 docker-compose run web bundle exec rails test
 
 
-Improvements
+#Improvements
 
 The views are quite simple for the moment, a cleaner user experience muist be implemented
 Add pagination to recipes
